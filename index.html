@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Miminum</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="miminum.svg" type="image/svg+xml" sizes="any">
+
+<script src="miminum.js" type="text/javascript"></script>
+<link href="miminum.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body class="dark" onload="init()">
+
+<div id="container" class="container dim">
+  <div class="top-panel">
+    <div id="top_buttons" class="block no-dim">
+      <button title="Info" data-modal="info" class="button-top" onclick="modal_window_open(this)"><i class="gg-info"></i></button>
+      <button title="Settings" data-modal="settings" class="button-top" onclick="modal_window_open(this)"><i class="gg-menu-round"></i></button>
+      <button title="Next image" id="next_bgimage_button" class="button-top" onclick="bgimage()"><i class="gg-chevron-right-o"></i></button>
+    </div>
+  </div>
+  <div class="center1-panel">
+    <div id="clock" class="block no-dim">
+      <div id="time"></div>
+      <div id="date"></div>
+    </div>
+  </div>
+  <div class="center2-panel">
+    <div id="search" class="block">
+      <input type=search id="search_input" autofocus="autofocus" onKeydown="search_input_key(event)" onInput="search_suggestion()" onPaste="search_suggestion()">
+      <div id="search_buttons"></div>
+      <div id="search_suggestion"></div>
+    </div>
+  </div>
+  <div class="left-panel">
+    <div id="links" class="block no-dim"></div>
+  </div>
+  <div class="right-panel">
+    <div id="calendar" class="block no-dim"></div>
+  </div>
+</div>
+
+<div id="settings" class="modal-window hidden" onChange="apply_settings()">
+  <h2>Settings</h2>
+  <table class="settings">
+    <tr><td>Color scheme</td><td>
+      <select id="color_scheme" class="config">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+    </td></tr>
+    <tr><td>Dim</td><td>
+      <select id="dim_mode" class="config">
+        <option value="full">Full</option>
+        <option value="block">Block</option>
+        <option value="nothing">Nothing</option>
+      </select>
+    </td></tr>
+    <tr><td>Background color</td><td>
+      <input type="color" id="background_color" class="config">
+    </td></tr>
+    <tr><td>First day of week</td><td>
+      <select id="first_day_of_week" class="config">
+        <option value="1">Monday</option>
+        <option value="0">Sunday</option>
+      </select>
+    </td></tr>
+    <tr><td>Clock</td><td>
+      <label><input type="checkbox" class="config" id="clock_hours_12" />12 hours</label>
+      <label><input type="checkbox" class="config" id="clock_hours_zero" />Leading zero</label>
+      <label><input type="checkbox" class="config" id="clock_seconds" />Seconds</label>
+    </td></tr>
+    <tr><td>Search<br>
+      <span class="description"> One url by line.<br> First used as default.<br>{Q} - search query.</span>
+    </td><td>
+      <textarea class="config" id="search_list" rows="4" cols="60"></textarea>
+    </td></tr>
+    <tr><td>Search suggestion</td><td>
+      <select id="search_suggestion_source" class="config">
+        <option>DuckDuckGo</option>
+        <option>Google</option>
+      </select>
+    </td></tr>
+    <tr><td>Links<br>
+      <span class="description"> One url by line.<br>Use dash for divider.</span>
+    </td><td>
+      <textarea class="config" id="links_list" rows="4" cols="60"></textarea>
+    </td></tr>
+    <tr><td>Images<br>
+      <span class="description">One url by line.<br>{X} - screen width.<br>{Y} - screen height.<br>{R} - random number.</span>
+    </td><td>
+      <textarea class="config" id="bgimage_list" rows="4" cols="60"></textarea>
+    </td></tr>
+    <tr><td>Image autochange</td><td>
+      <input type="number" class="config" id="bgimage_autochange" size=3 min="0" max="60"> minutes
+    </td></tr>
+    <tr><td>Image blur</td><td>
+      <input type="number" class="config" id="bgimage_blur" size=3 min="0" max="10"> pixels
+    </td></tr>
+  </table>
+  <p>
+    <button class="button" onclick="save_settings()">Save settings to browser local storage</button>
+    <button class="button" onclick="delete_settings()">Delete saved settings</button>
+    <button class="button" onclick="modal_windows_close()">Close</button>
+  </p>
+</div>
+
+
+<div id="info" class="modal-window hidden">
+  <h2>Info</h2>
+  <p>
+    Miminum - is realy minimal and customizable startpage<br>
+    with clock, calendar, search, favorite links and background images.<br>
+    All settings can be saved to browser local storage.<br>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/joddude/miminum">Github page</a>
+  </p>
+  <h3>Used</h3>
+  <p>
+    <b>Search:</b>
+    <a target="_blank" rel="noopener noreferrer" href="https://duckduckgo.com/">Duckduckgo</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/">Google</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.bing.com/">Bing</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.qwant.com/">Qwant</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://yep.com/">Yep</a>
+    <br>
+    <b>Favicon api:</b>
+    <a target="_blank" rel="noopener noreferrer" href="https://duckduckgo.com/">Duckduckgo</a>
+    <br>
+    <b>Images api:</b>
+    <a target="_blank" rel="noopener noreferrer" href="https://unsplash.com/">Unsplash</a>
+    <br>
+    <b>Icons:</b>
+    <a target="_blank" rel="noopener noreferrer" href="https://css.gg/">css.gg</a>
+  </p>
+  <h3>Thank you for using</h3>
+  <p>If you like this app - <a target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/joddude">buymeacoffee</a></p>
+  <p><button title="Close" class="button" onclick="modal_windows_close()">Close</button></p>
+</div>
+
+<div id="modal-backdrop" class="hidden" id="modal-backdrop" onClick="modal_windows_close()"></div>
+
+<img id="bgimage1" class="bgimage bgimage-visible" onLoad="bgimage_onload(this)">
+<img id="bgimage2" class="bgimage bgimage-hidden" onLoad="bgimage_onload(this)">
+
+</body>
+</html>
