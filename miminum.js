@@ -344,7 +344,7 @@ async function search_suggestion_duckduckgo(search_value) {
 }
 
 async function search_suggestion_google(search_value) {
-  let suggestions_url = 'http://google.com/complete/search?output=toolbar&client=chrome&q=' + search_value;
+  let suggestions_url = 'https://google.com/complete/search?output=toolbar&client=chrome&q=' + search_value;
   let suggestions = [];
   const response = await get_url_cors_bypass(suggestions_url);
   response[1].forEach(function(item) {
