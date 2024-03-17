@@ -4,6 +4,9 @@ All settings can be saved to browser local storage.
 
 https://joddude.github.io/miminum/
 
+## Notes
+Some browser addon can block search suggestions (e.g. Privacy Badger)
+
 ## Used
 **Search:** [Duckduckgo](https://duckduckgo.com/) [Google](https://www.google.com/) [Bing](https://www.bing.com/) [Qwant](https://www.qwant.com/) [Yep](https://yep.com/)
 
