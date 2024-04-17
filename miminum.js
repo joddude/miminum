@@ -150,8 +150,7 @@ function links() {
       if (url_element !== null) {
         links_html += '<a class="link" href="' + url + '">';
         links_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico"';
-        links_html += 'onerror="this.src=\'\'"';
-        links_html += ' alt="' + url_element[1].charAt(0).toUpperCase() + '"/>';
+        links_html += 'onerror="this.alt=\'' + url_element[1].charAt(0).toUpperCase() + '\'"/>';
         links_html += url_element[1] + '</a>';
       }
     }
@@ -249,8 +248,7 @@ function search() {
       search_buttons_html += '<button class="button-search" onClick="search_query(this)" ';
       search_buttons_html += 'title="' + url_element[1] + '" data-search=' + index + '>';
       search_buttons_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico"';
-      search_buttons_html += 'onerror="this.src=\'\'"';
-      search_buttons_html += ' alt="' + url_element[1].charAt(0).toUpperCase() + '"/>';
+      search_buttons_html += 'onerror="this.alt=\'' + url_element[1].charAt(0).toUpperCase() + '\'"/>';
       search_buttons_html += '</button>';
     }
   });
