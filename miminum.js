@@ -8,7 +8,7 @@ const config_default = {
   clock_seconds: false,
   search_list: 'https://duckduckgo.com/?q={Q}\nhttps://www.google.com/search?q={Q}\nhttps://www.bing.com/search?q={Q}\nhttps://www.qwant.com/?q={Q}\nhttps://yep.com/web?q={Q}',
   search_suggestion_source: 'DuckDuckGo',
-  links_list: 'https://mail.google.com/\nhttps://www.inoreader.com/\n-\nhttps://www.youtube.com/\nhttps://spotify.com/',
+  links_list: 'https://mail.google.com/|Gmail\nhttps://www.inoreader.com/\nhttps://spotify.com/\n-\nhttps://example.com/|Example|https://example.com/logo.ico',
   bgimage_list: 'https://source.unsplash.com/random/{X}x{Y}/?landscape={R}\nhttps://source.unsplash.com/random/{X}x{Y}/?road={R}',
   bgimage_blur: '0',
   bgimage_autochange: '0',
@@ -142,16 +142,28 @@ function modal_windows_close() {
 function links() {
   var links_list = config.links_list.split('\n');
   var links_html = '';
-  links_list.forEach(function(url) {
-    if (url == '-') {
+  links_list.forEach(function(link) {
+    if (link == '-') {
       links_html += '<hr>';
     } else {
+      var link_element = link.match(/([^\|]*)\|*([^\|]*)\|*([^\|]*)/);
+      url = link_element[1];
+      name = link_element[2];
+      icon = link_element[3];
       var url_element = url.match(/https?\:\/\/(?:www\.)*([^\/$]+)/);
       if (url_element !== null) {
         links_html += '<a class="link" href="' + url + '">';
-        links_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico"';
+        if (icon) {
+          links_html += '<img src="' + icon + '" ';
+        } else {
+          links_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico" ';
+        }
         links_html += 'onerror="this.alt=\'' + url_element[1].charAt(0).toUpperCase() + '\'"/>';
-        links_html += url_element[1] + '</a>';
+        if (name) {
+          links_html += name + '</a>';
+        } else {
+          links_html += url_element[1] + '</a>';
+        }
       }
     }
   });
