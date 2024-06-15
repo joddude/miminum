@@ -12,7 +12,7 @@ Some browser addon can block search suggestions (e.g. Privacy Badger)
 
 **Favicon api:** [Duckduckgo](https://duckduckgo.com/)
 
-**Images api:** [Unsplash](https://unsplash.com/)
+**Images api:** [Lorem Picsum](https://picsum.photos/)
 
 **Icons:** [css.gg](https://css.gg/)
 
