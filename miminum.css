@@ -3,6 +3,7 @@ body{
   user-select: none;
   overflow: hidden;
   color: var(--text-color);
+  text-shadow: 0 0 5px var(--dim-color);
 }
 
 .dark {
