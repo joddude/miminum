@@ -1,6 +1,7 @@
 # Miminum
 Miminum - is realy minimal and customizable startpage with clock, calendar, search, favorite links and background images.
-All settings can be saved to browser local storage.
+Settings can be saved to browser local storage.
+Does not use any third-party libraries, pure js, only 28 kB.
 
 https://joddude.github.io/miminum/
 
@@ -8,7 +9,7 @@ https://joddude.github.io/miminum/
 Some browser addon can block search suggestions (e.g. Privacy Badger)
 
 ## Used
-**Search:** [Duckduckgo](https://duckduckgo.com/) [Google](https://www.google.com/) [Bing](https://www.bing.com/) [Qwant](https://www.qwant.com/) [Yep](https://yep.com/)
+**Search:** [Duckduckgo](https://duckduckgo.com/) [Google](https://www.google.com/) [Bing](https://www.bing.com/) [ChatGPT](https://chatgpt.com/) [Wikipedia](https://wikipedia.org/)
 
 **Favicon api:** [Duckduckgo](https://duckduckgo.com/)
 
