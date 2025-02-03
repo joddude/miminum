@@ -27,8 +27,10 @@
   </div>
   <div class="center2-panel">
     <div id="search" class="block">
-      <input type=search id="search_input" autofocus="autofocus" onKeydown="search_input_key(event)" onInput="search_suggestion()" onPaste="search_suggestion()">
-      <div id="search_buttons"></div>
+      <div id="search_frame">
+        <input type=search id="search_input" autofocus="autofocus" onKeydown="search_input_key(event)" onInput="search_suggestion()" onPaste="search_suggestion()">
+        <div id="search_buttons"></div>
+      </div>
       <div id="search_suggestion"></div>
     </div>
   </div>
