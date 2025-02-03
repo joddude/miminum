@@ -8,6 +8,18 @@ https://joddude.github.io/miminum/
 ## Notes
 Some browser addon can block search suggestions (e.g. Privacy Badger)
 
+## Search query list
+```
+https://duckduckgo.com/?q={Q}
+https://www.google.com/search?q={Q}
+https://www.bing.com/search?q={Q}
+https://chatgpt.com/?q={Q}&hints=search
+https://wikipedia.org/wiki/Special:Search?search={Q}
+https://www.startpage.com/do/dsearch?query={Q}
+https://www.qwant.com/?q={Q}
+https://yep.com/web?q={Q}
+```
+
 ## Used
 **Search:** [Duckduckgo](https://duckduckgo.com/) [Google](https://www.google.com/) [Bing](https://www.bing.com/) [ChatGPT](https://chatgpt.com/) [Wikipedia](https://wikipedia.org/)
 
