@@ -20,6 +20,12 @@ https://www.qwant.com/?q={Q}
 https://yep.com/web?q={Q}
 ```
 
+## Random backgroung images list
+```
+https://picsum.photos/{X}/{Y}?random={R}
+https://bingw.jasonzeng.dev/?resolution={X}x{Y}&index=random
+```
+
 ## Used
 **Search:** [Duckduckgo](https://duckduckgo.com/) [Google](https://www.google.com/) [Bing](https://www.bing.com/) [ChatGPT](https://chatgpt.com/) [Wikipedia](https://wikipedia.org/)
 
