@@ -23,7 +23,7 @@ https://yep.com/web?q={Q}
 ## Random backgroung images list
 ```
 https://picsum.photos/{X}/{Y}?random={R}
-https://bingw.jasonzeng.dev/?resolution={X}x{Y}&index=random
+https://bingw.jasonzeng.dev/?resolution={X}x{Y}&index=random&random={R}
 ```
 
 ## Used
