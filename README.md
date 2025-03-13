@@ -41,6 +41,6 @@ This software is free and provided "as is" without any warranty. The author assu
 
 
 ## Thank you for using
-If you like this app
+If you like this app, please consider donating. 
 
-<a href="https://www.buymeacoffee.com/joddude" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+https://donatello.to/joddude
