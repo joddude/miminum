@@ -43,4 +43,4 @@ This software is free and provided "as is" without any warranty. The author assu
 ## Thank you for using
 If you like this app, please consider donating. 
 
-https://donatello.to/joddude
+https://ko-fi.com/joddude
