@@ -18,6 +18,7 @@ https://wikipedia.org/wiki/Special:Search?search={Q}
 https://www.startpage.com/do/dsearch?query={Q}
 https://www.qwant.com/?q={Q}
 https://yep.com/web?q={Q}
+https://search.yahoo.com/search?p={Q}
 ```
 
 ## Random backgroung images list
