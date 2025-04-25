@@ -1,5 +1,4 @@
 body{
-  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   user-select: none;
   overflow: hidden;
   color: var(--text-color);
@@ -355,7 +354,6 @@ hr {
   background-color: var(--input-color);
   position: absolute;
   font-size: 1.2rem;
-  font-family: sans-serif;
   width: 35rem;
   margin-top: .2rem;
   border: 2px solid var(--border-color);

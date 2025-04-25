@@ -61,6 +61,23 @@
     <tr><td>Background color</td><td>
       <input type="color" id="background_color" class="config">
     </td></tr>
+    <tr><td>Font family & size</td><td>
+      <select id="font_family" class="config">
+        <option value="system-ui, sans-serif">System Default</option>
+        <option value="sans-serif">Generic Sans-serif</option>
+        <option value="serif">Generic Serif</option>
+        <option value="monospace">Generic Monospace</option>
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="Helvetica, sans-serif">Helvetica</option>
+        <option value="Times New Roman, serif">Times New Roman</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Courier New, monospace">Courier New</option>
+        <option value="Lucida Console, monospace">Lucida Console</option>
+        <option value="Bahnschrift, 'Segoe UI', Roboto, sans-serif">Bahnschrift & Fallbacks</option>
+      </select>
+      <input type="number" class="config" id="font_size" value="16" min="8" max="32" step="1"> pixels
+    </td></tr>
     <tr><td>First day of week</td><td>
       <select id="first_day_of_week" class="config">
         <option value="1">Monday</option>

@@ -2,6 +2,8 @@ const config_default = {
   color_scheme: 'dark',
   dim_mode: 'full',
   background_color: '#282828',
+  font_family: 'system-ui, sans-serif',
+  font_size: 16,
   clock_hours_12: false,
   clock_hours_zero: false,
   first_day_of_week: '1',
@@ -30,6 +32,11 @@ function init() {
 function load_settings() {
   if (localStorage.getItem('miminum_config') != null) {
     config = JSON.parse(localStorage.getItem('miminum_config'));
+    for (const key in config_default) {
+      if (config_default.hasOwnProperty(key) && !config.hasOwnProperty(key)) {
+        config[key] = structuredClone(config_default[key]);
+      }
+    }
   } else {
     config = structuredClone(config_default);
   }
@@ -55,6 +62,7 @@ function apply_settings() {
   clearInterval(clock_timer);
   clearInterval(calendar_timer);
   clearInterval(bgimage_timer);
+  font_select();
   color_scheme();
   dim_mode();
   links();
@@ -102,6 +110,14 @@ function dim_mode() {
     document.querySelectorAll('.dim').forEach(x=>x.classList.replace('dim', 'no-dim'));
     document.getElementById('container').classList.replace('no-dim', 'dim');
     break
+  }
+}
+
+function font_select() {
+  document.documentElement.style.fontFamily = config.font_family;
+  const fontSize = parseFloat(config.font_size);
+  if (!isNaN(fontSize) && fontSize > 0) {
+    document.documentElement.style.fontSize = fontSize + 'px';
   }
 }
 
