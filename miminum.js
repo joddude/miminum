@@ -8,7 +8,7 @@ const config_default = {
   clock_hours_zero: false,
   first_day_of_week: '1',
   clock_seconds: false,
-  search_list: 'https://duckduckgo.com/?q={Q}\nhttps://www.google.com/search?q={Q}\nhttps://www.bing.com/search?q={Q}\nhttps://chatgpt.com/?q={Q}&hints=search\nhttps://wikipedia.org/wiki/Special:Search?search={Q}',
+  search_list: 'https://duckduckgo.com/?q={Q}\nhttps://www.google.com/search?q={Q}\nhttps://www.bing.com/search?q={Q}\nhttps://chatgpt.com/?q={Q}\nhttps://wikipedia.org/wiki/Special:Search?search={Q}',
   search_suggestion_source: 'DuckDuckGo',
   links_list: 'https://mail.google.com/|Gmail\nhttps://www.inoreader.com/\nhttps://spotify.com/\n-\nhttps://example.com/|Example|https://example.com/logo.ico',
   bgimage_list: 'https://picsum.photos/{X}/{Y}?random={R}',
