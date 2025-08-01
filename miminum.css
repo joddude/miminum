@@ -327,8 +327,8 @@ hr {
   padding: 0px;
   border-radius: 50%;
   border:none;
-  color: var(--text-color);
-  background-color: var(--dim-color);
+  color: grey;
+  background-color: #ffffff;
 }
 
 .button-search:hover {
@@ -341,7 +341,7 @@ hr {
   border-radius: 50%;
   text-align:center;
   font-size: 18px;
-  color: var(--text-color);
+  color: var(--input-color);
 }
 
 .button-search img:hover {
