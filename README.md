@@ -20,7 +20,7 @@ https://www.qwant.com/?q={Q}
 https://yep.com/web?q={Q}
 https://search.yahoo.com/search?p={Q}
 https://chat.mistral.ai/chat?q={Q}
-https://www.bing.com/search?showconv=1&sendquery=1&q={Q}
+https://grok.com/?q={Q}
 ```
 
 ## Random backgroung images list
