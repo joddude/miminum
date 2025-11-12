@@ -21,6 +21,7 @@ https://yep.com/web?q={Q}
 https://search.yahoo.com/search?p={Q}
 https://chat.mistral.ai/chat?q={Q}
 https://grok.com/?q={Q}
+https://www.perplexity.ai/search?q={Q}
 ```
 
 ## Random backgroung images list
