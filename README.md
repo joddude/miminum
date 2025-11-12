@@ -13,12 +13,12 @@ Some browser addon can block search suggestions (e.g. Privacy Badger)
 https://duckduckgo.com/?q={Q}
 https://www.google.com/search?q={Q}
 https://www.bing.com/search?q={Q}
-https://chatgpt.com/?q={Q}
 https://wikipedia.org/wiki/Special:Search?search={Q}
 https://www.startpage.com/do/dsearch?query={Q}
 https://www.qwant.com/?q={Q}
 https://yep.com/web?q={Q}
 https://search.yahoo.com/search?p={Q}
+https://chatgpt.com/?q={Q}
 https://chat.mistral.ai/chat?q={Q}
 https://grok.com/?q={Q}
 https://www.perplexity.ai/search?q={Q}
