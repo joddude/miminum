@@ -76,6 +76,9 @@ function apply_settings() {
   } else {
     clearInterval(bgimage_timer);
   }
+  document.querySelectorAll('.bgimage').forEach(el => {
+    el.style.filter = 'blur(' + config.bgimage_blur + 'px)';
+  })
 }
 
 function save_settings() {
@@ -141,7 +144,6 @@ function bgimage() {
 function bgimage_onload(e) {
   document.getElementById('next_bgimage_button').classList.remove('loading');
   document.querySelector('.bgimage-visible').classList.replace('bgimage-visible', 'bgimage-hidden');
-  e.style.filter = 'blur(' + config.bgimage_blur + 'px)';
   e.classList.replace('bgimage-hidden', 'bgimage-visible');
 }
 
