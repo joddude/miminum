@@ -321,6 +321,9 @@ hr {
 }
 
 .button-search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   margin: 0px 2px 0px 2px;
@@ -329,25 +332,23 @@ hr {
   border:none;
   color: grey;
   background-color: #ffffff;
+  text-decoration: none;
 }
 
 .button-search:hover {
-  cursor: pointer;
+  outline: 2px solid var(--text-color);
+  outline-offset: 1px;
 }
 
 .button-search img {
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  display: block;
   text-align:center;
   font-size: 18px;
   color: var(--input-color);
 }
-
-.button-search img:hover {
-  filter: brightness(70%);
-}
-
 
 #search_suggestion {
   color: var(--text-color);

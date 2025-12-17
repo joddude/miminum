@@ -268,36 +268,47 @@ function month_calendar(month) {
 }
 
 function search() {
-  var search_list = config.search_list.split('\n');
-  var search_buttons_html = '';
+  const search_list = config.search_list.split('\n');
+  let search_buttons_html = '';
   search_list.forEach(function(url, index) {
-    var url_element = url.match(/https?\:\/\/(?:www\.)*([^\/$]+)/);
+    let url_element = url.match(/https?\:\/\/(?:www\.)*([^\/$]+)/);
     if (url_element !== null) {
-      search_buttons_html += '<button class="button-search" onClick="search_query(this)" ';
-      search_buttons_html += 'title="' + url_element[1] + '" data-search=' + index + '>';
-      search_buttons_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico"';
-      search_buttons_html += 'onerror="this.alt=\'' + url_element[1].charAt(0).toUpperCase() + '\'"/>';
-      search_buttons_html += '</button>';
+      search_buttons_html += '<a class="button-search" href="' + url_element[0] + '" title="' + url_element[1] + '" data-search=' + index + '>';
+      search_buttons_html += '<img src="' + 'https://icons.duckduckgo.com/ip3/' + url_element[1] + '.ico" onerror="this.alt=\'' + url_element[1].charAt(0).toUpperCase() + '\'"/>';
+      search_buttons_html += '</a>';
     }
   });
   document.getElementById('search_buttons').innerHTML = search_buttons_html;
 }
 
-function search_query(e) {
+function search_query(el) {
+  search_links_update();
+  let first = document.querySelector('.button-search[href]');
+  if (!first) return;
+  location.href = first.getAttribute('href');
+}
+
+function search_input_update() {
+  search_links_update();
+  search_suggestion();
+}
+
+function search_links_update() {
   let search_input = document.getElementById('search_input');
   let selected = document.querySelector('.selected');
-  if (selected == null) {
-    var search_value = search_input.value;
-  } else {
-    var search_value = selected.dataset.value;
-  }
-  if (search_value !=='') {
-    let search_list = config.search_list.split('\n');
-    let search_index = e.dataset.search || 0;
-    let search_url = search_list[search_index];
-    search_url = search_url.replace('{Q}', search_value);
-    location.href = encodeURI(search_url);
-  }
+  let search_value = selected ? selected.dataset.value : search_input.value;
+  let search_list = config.search_list.split('\n');
+  search_list.forEach(function(url, index) {
+    let url_element = url.match(/https?\:\/\/(?:www\.)*([^\/$]+)/);
+    let el = document.querySelector('.button-search[data-search="' + index + '"]');
+    if (url_element && el) {
+      if (search_value === '') {
+        el.href = url_element[0];
+      } else {
+        el.href = url.replace('{Q}', encodeURIComponent(search_value));
+      }
+    }
+  })
 }
 
 function search_input_key(event) {
