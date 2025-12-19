@@ -300,6 +300,7 @@ hr {
 }
 
 #search_frame {
+  position: relative;
   display: flex;
   width: 35rem;
   background-color: var(--input-color);
@@ -311,6 +312,7 @@ hr {
   flex-grow: 1;
   font-size: 1.2rem;
   margin: .5rem .5rem .5rem 1rem;
+  padding-bottom: 2.2rem;
   background: transparent;
   border: none;
   outline: none;
@@ -321,8 +323,11 @@ hr {
 }
 
 #search_buttons {
-  flex-grow: 0;
-  margin: .6rem .5rem .5rem .5rem;
+  position: absolute; 
+  display: flex;
+  right: .5rem;
+  bottom: .5rem;
+  gap: .2rem;
 }
 
 .button-search {
@@ -361,7 +366,7 @@ hr {
   position: absolute;
   font-size: 1.2rem;
   width: 35rem;
-  margin-top: .2rem;
+  margin-top: .4rem;
   border: 2px solid var(--border-color);
   border-radius: 20px;
   opacity: 0;
