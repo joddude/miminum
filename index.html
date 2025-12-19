@@ -18,6 +18,7 @@
       <button title="Settings" data-modal="settings" class="button-top" onclick="modal_window_open(this)"><i class="gg-menu-round"></i></button>
       <button title="Next image" id="next_bgimage_button" class="button-top" onclick="bgimage()"><i class="gg-chevron-right-o"></i></button>
     </div>
+    <div id="error_message"></div>
   </div>
   <div class="center1-panel">
     <div id="clock" class="block no-dim">
@@ -28,7 +29,7 @@
   <div class="center2-panel">
     <div id="search" class="block">
       <div id="search_frame">
-        <input type=search id="search_input" autofocus="autofocus" onKeydown="search_input_key(event)" onInput="search_input_update()" onPaste="search_input_update()">
+        <textarea type=search id="search_textarea" autofocus="autofocus" autocomplete="off" rows="1" onKeydown="search_textarea_key(event)" onInput="search_textarea_update()" onPaste="search_textarea_update()"></textarea>
         <div id="search_buttons"></div>
       </div>
       <div id="search_suggestion"></div>
@@ -159,8 +160,8 @@
 
 <div id="modal-backdrop" class="hidden" id="modal-backdrop" onClick="modal_windows_close()"></div>
 
-<img id="bgimage1" class="bgimage bgimage-visible" onLoad="bgimage_onload(this)">
-<img id="bgimage2" class="bgimage bgimage-hidden" onLoad="bgimage_onload(this)">
+<img id="bgimage1" class="bgimage bgimage-visible" onLoad="bgimage_onload(this)" onError="bgimage_onerror(this)">
+<img id="bgimage2" class="bgimage bgimage-hidden" onLoad="bgimage_onload(this)" onError="bgimage_onerror(this)">
 
 </body>
 </html>

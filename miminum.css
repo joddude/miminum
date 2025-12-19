@@ -145,6 +145,9 @@ a {
 
 .top-panel {
   grid-area: top;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 .left-panel {
@@ -224,7 +227,6 @@ a {
 }
 
 #top_buttons{
-  display: inline-block;
   margin: 1rem;
   padding: .2rem;
   padding-bottom: 0rem;
@@ -300,24 +302,27 @@ hr {
 #search_frame {
   display: flex;
   width: 35rem;
-  height: 2.5rem;
   background-color: var(--input-color);
   border: 2px solid var(--border-color);
   border-radius: 20px;
 }
 
-#search_input {
+#search_textarea {
   flex-grow: 1;
   font-size: 1.2rem;
   margin: .5rem .5rem .5rem 1rem;
   background: transparent;
   border: none;
   outline: none;
+  box-sizing: border-box;
+  resize: none;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 #search_buttons {
   flex-grow: 0;
-  margin: .5rem .5rem .5rem .5rem;
+  margin: .6rem .5rem .5rem .5rem;
 }
 
 .button-search {

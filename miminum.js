@@ -118,11 +118,20 @@ function dim_mode() {
 
 function font_select() {
   document.documentElement.style.fontFamily = config.font_family;
-  const fontSize = parseFloat(config.font_size);
+  const fontFamily = config.font_family;
+  const fontSize = parseFloat(fontFamily);
   if (!isNaN(fontSize) && fontSize > 0) {
     document.documentElement.style.fontSize = fontSize + 'px';
   }
+  document.querySelectorAll('textarea').forEach(el => {
+    el.style.fontFamily = fontFamily;
+    if (!isNaN(fontSize) && fontSize > 0) {
+      el.style.fontSize = fontSize + 'px';
+    }
+  });
 }
+
+
 
 function bgimage() {
   var bgimage_list = config.bgimage_list.split('\n');
@@ -145,6 +154,12 @@ function bgimage_onload(e) {
   document.getElementById('next_bgimage_button').classList.remove('loading');
   document.querySelector('.bgimage-visible').classList.replace('bgimage-visible', 'bgimage-hidden');
   e.classList.replace('bgimage-hidden', 'bgimage-visible');
+  document.getElementById('error_message').textContent = '';
+}
+
+function bgimage_onerror(e) {
+  document.getElementById('next_bgimage_button').classList.remove('loading');
+  document.getElementById('error_message').textContent = 'Error loading image: ' +  e.src;;
 }
 
 function modal_window_open(e) {
@@ -283,22 +298,23 @@ function search() {
   document.getElementById('search_buttons').innerHTML = search_buttons_html;
 }
 
-function search_query(el) {
+function search_query() {
   search_links_update();
   let first = document.querySelector('.button-search[href]');
   if (!first) return;
   location.href = first.getAttribute('href');
 }
 
-function search_input_update() {
+function search_textarea_update() {
   search_links_update();
+  search_textarea_resize();
   search_suggestion();
 }
 
 function search_links_update() {
-  let search_input = document.getElementById('search_input');
+  let search_textarea = document.getElementById('search_textarea');
   let selected = document.querySelector('.selected');
-  let search_value = selected ? selected.dataset.value : search_input.value;
+  let search_value = selected ? selected.dataset.value : search_textarea.value;
   let search_list = config.search_list.split('\n');
   search_list.forEach(function(url, index) {
     let url_element = url.match(/https?\:\/\/(?:www\.)*([^\/$]+)/);
@@ -313,39 +329,60 @@ function search_links_update() {
   })
 }
 
-function search_input_key(event) {
-  let search_input = document.getElementById('search_input');
+function search_textarea_resize() {
+  let search_textarea = document.getElementById('search_textarea');
+  search_textarea.style.height = 'auto';
+  search_textarea.style.height = search_textarea.scrollHeight + 'px';
+}
+
+function is_multiline_textarea() {
+  const el = document.getElementById('search_textarea');
+  const prevHeight = el.style.height;
+  const prevOverflow = el.style.overflow;
+  el.style.height = 'auto';
+  el.style.overflow = 'hidden';
+  const multiline = el.scrollHeight > el.clientHeight;
+  el.style.height = prevHeight;
+  el.style.overflow = prevOverflow;
+  return multiline;
+}
+
+function search_textarea_key(event) {
+  let search_textarea = document.getElementById('search_textarea');
   let selected = document.querySelector('.selected');
-  if(event.key=='Enter') search_query(search_input);
-  if(event.key == 'ArrowDown') {
+  if(event.key=='Enter' && !event.shiftKey) {
+    event.preventDefault();
+    search_query();
+  }
+  if(event.key == 'ArrowDown' && !is_multiline_textarea()) {
     event.preventDefault(); 
     if (selected == null) {
       let first_suggestion = document.getElementById('search_suggestion').firstChild;
       suggestion_select(first_suggestion);
-      search_input.value = first_suggestion.dataset.value;
+      search_textarea.value = first_suggestion.dataset.value;
     } else if (selected !== document.getElementById('search_suggestion').lastChild) {
       let next = selected.nextSibling;
       suggestion_select(next);
-      search_input.value = next.dataset.value;
+      search_textarea.value = next.dataset.value;
     }
   }
-  if(event.key == 'ArrowUp') {
+  if(event.key == 'ArrowUp' && !is_multiline_textarea() && selected) {
     event.preventDefault(); 
     if (selected == document.getElementById('search_suggestion').firstChild) {
-      search_input.value = search_input.dataset.value;
+      search_textarea.value = search_textarea.dataset.value;
       suggestion_select(null);
     } else {
       let previous = selected.previousSibling;
       suggestion_select(previous);
-      search_input.value = previous.dataset.value;
+      search_textarea.value = previous.dataset.value;
     }
   }
 }
 
 function search_suggestion() {
-  var search_value = document.getElementById('search_input').value;
-  document.getElementById('search_input').dataset.value = search_value;
-  if (search_value == '') {
+  var search_value = document.getElementById('search_textarea').value;
+  document.getElementById('search_textarea').dataset.value = search_value;
+  if (search_value == '' || is_multiline_textarea()) {
     document.getElementById('search_suggestion').innerHTML = '';
     document.getElementById('search_suggestion').style.opacity = 0;
   } else {
@@ -367,7 +404,7 @@ function search_suggestion_show(suggestions) {
 }
 
 function suggestion_select(e) {
-  document.getElementById('search_input').focus();
+  document.getElementById('search_textarea').focus();
   document.querySelectorAll('.suggestion').forEach(x=>x.classList.remove('selected'));
   if (e !== null) e.classList.add('selected');
 }
@@ -394,21 +431,21 @@ async function search_suggestion_google(search_value) {
 
 function get_url_cors_bypass(url) {
   return new Promise((resolve, reject) => {
-    script = document.createElement('script');
-    const done = () => {
-      document.head.removeChild(script);
-      window['autocompleteCallback'] = null;
-    };
+    const script = document.createElement('script');
+    
     window['autocompleteCallback'] = response => {
-      done();
       resolve(response);
+      window['autocompleteCallback'] = () => {};
     };
     script.onerror = () => {
-      done();
+      window['autocompleteCallback'] = () => {};
       reject();
     };
+    script.onload = script.onerror = () => {
+      script.remove();
+    };
     script.src = url + '&callback=autocompleteCallback';
-    document.querySelector('head').appendChild(script);
-  })
+    document.head.appendChild(script);
+  });
 }
 

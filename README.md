@@ -1,7 +1,7 @@
 # Miminum
-Miminum - is realy minimal and customizable startpage with clock, calendar, search, favorite links and background images.
-Settings can be saved to browser local storage.
-Does not use any third-party libraries, pure js, only 28 kB.
+Miminum is a truly minimal and customizable start page featuring a clock, calendar, search, favorite links, and background images.
+Settings can be saved in the browser’s local storage.
+Pure JavaScript, no dependencies, ~30 kB.
 
 https://joddude.github.io/miminum/
 
